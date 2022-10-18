@@ -1,0 +1,45 @@
+.cube {
+  border: 0px solid black;
+  right: 0;
+  top: 0;
+  outline: none;
+  border-radius: 4px;
+  background: transparent;
+  position: absolute;
+  padding: 1em;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+}
+
+.cube img {
+  filter: invert(100%);
+}
+.cube:hover {
+  filter: invert(50%);
+}
+
+.social-networks {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  filter: invert(100%);
+}
+.invert {
+  filter: invert(100%);
+}
+.social-networks img {
+  width: 1.2em;
+  margin-right: 4px;
+}
+
+a:hover img:hover {
+  filter: invert(50%);
+}
+
+.ascii {
+  font-family: monospace;
+  white-space: pre;
+
+}
+

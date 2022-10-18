@@ -1,0 +1,38 @@
+
+.loading {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-size: cover, contain;
+  background-repeat: no-repeat, no-repeat;
+  background-image: url("/public/UI/Background.jpg");
+  background-blend-mode: lighten;
+  background-position: center center, center center;
+  background-attachment: fixed,fixed;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  resize: both;
+
+}
+
+@media only screen and (max-width: 600px) {
+  .loading {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      background-size: cover, contain;
+      background-repeat: no-repeat, no-repeat;
+      background-image: url("/public/UI/Background.jpg");
+      background-position: center center, center center;
+      background-attachment: fixed,fixed;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      resize: both;
+
+  }
+
+}
