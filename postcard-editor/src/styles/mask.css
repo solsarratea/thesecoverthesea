@@ -1,0 +1,19 @@
+#mask-layout{
+    display: flex; 
+    flex-direction:column;
+    width: 100%;
+    height: 100%;
+    border-bottom:.1em  solid var(--font-color);
+    border-left:.1em  solid var(--font-color);
+    border-top:.1em  solid var(--font-color);
+}
+
+
+#mask-layout section{
+  border-bottom:.1em  solid var(--font-color);
+}
+
+#mask-layout #three-canvas{
+    height:100%;
+
+}

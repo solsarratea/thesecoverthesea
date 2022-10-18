@@ -1,0 +1,50 @@
+#demo{
+    display: flex;
+    flex-direction: column;
+}
+
+#demo img{
+   align-self: center;
+   margin: .5em;
+   border: .2em solid var(--font-color);
+   margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display: block;
+  margin-top: 1em;
+   
+}
+
+#demo video{
+    align-self: center;
+    margin: .5em;
+    border: .2em solid var(--font-color);
+    margin-left: auto;
+   margin-right: auto;
+   width: 50%;
+   display: block;
+   margin-top: 1em;
+    
+ }
+
+.sub-block {  
+    border-bottom: .15em solid var(--font-color);
+    padding-top: .5em;
+    padding-bottom: .5em;
+
+}
+
+#information .text {  
+    border-bottom: .15em solid var(--font-color);
+    padding-bottom: .5em;
+    line-height: 1.2;
+
+}
+
+#information .text h1{  
+    margin: 0;
+}
+
+.no-border{
+    border: 0px;
+}

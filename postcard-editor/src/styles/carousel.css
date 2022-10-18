@@ -1,0 +1,49 @@
+#container {
+  width: 100%;
+  height: 85%;
+  max-height: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+  margin: 1em 0 ;
+  
+}
+
+#container img {
+  object-fit: cover; 
+  object-position: 50% 100%;
+  margin: 0em .5em ;
+}
+
+
+#container div{ 
+ height: inherit;
+ width: inherit;
+ margin: 0 1em;
+ display: block;
+}
+
+
+.button {
+  font-family: inherit;
+  font-size: 18px;
+  line-height: inherit;
+  cursor: pointer;
+  color:  var(--font-color);
+  background: var(--background);
+  height: 64px;
+  line-height: 32px;
+  min-width: 32px;
+  padding: "0px 0px";
+  pointer-events: "auto";
+  border:.1em  solid var(--font-color);
+  margin: .5em;
+
+}
+
+.button:hover {
+  background: var(--font-color);
+  opacity: .8;
+  color: var(--background);
+}

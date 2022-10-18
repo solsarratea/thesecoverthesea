@@ -1,0 +1,142 @@
+
+.rgb-layout .react-colorful {
+    width: 100%;
+    max-height: 100%;
+    align-items: center;
+}
+
+.rgb-layout .react-colorful__saturation {
+    border-radius: 0px;
+    border-bottom: none;
+    max-height: 50%;
+    width: 100%;
+}
+
+.rgb-layout .react-colorful__hue {
+    height: 16px;
+    max-width: 90%;
+    width: 100%;
+}
+
+.rgb-layout .react-colorful__alpha {
+    display: none;
+}
+
+.slider {
+    max-width: 90%;
+    margin: 0 0 15% 0;
+}
+
+.padding-left, #controls .header,.current, .rgb-layout, .slider, .generator, .world-view, .text{
+    padding-left: .5em;
+}
+
+.selector {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  width:100%;
+  flex-wrap: wrap;
+  border-bottom: .1em solid var(--font-color);
+  min-height: content;
+}
+
+.selector hr{
+    width: .1em;
+    height: inherit;
+
+}
+
+.selector button{
+    background-color: var(--background);
+    font-family: inherit;
+    border: 0px solid ;
+    align-self: baseline;
+    height: 2em;
+    color: inherit;
+  
+}
+.selector .selected {
+    background-color: rgb(211, 203, 203);
+}
+
+.selector button:hover{
+    background-color: var(--font-color);
+    color: var(--background);
+}
+
+
+.inverted{
+    width: 20px;
+    height: auto;
+    filter: invert(100%);
+    border: none;
+}
+
+  .selected {
+    background-color: rgb(211, 203, 203) !important;
+  }
+
+ 
+
+  .wip{
+    color: gray;
+  }
+
+  .body{
+    display: flex;
+    flex-direction: column;
+  }
+  .mask{
+    align-content: center;
+  }
+
+  .header{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .emoji {
+    border: none;
+    background-color: var(--background);
+    color: transparent;
+    text-shadow: var(--font-color) 0px 0px 0px;
+    opacity:.5;
+
+  }
+
+
+
+  .emoji:hover{
+    opacity: 1;
+  }
+
+  .scroll {
+    overflow-y: scroll; 
+
+  }
+
+  .ascii{
+    max-height: 32px;
+    margin-bottom: 1em;
+  }
+
+  .current {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+
+  .current select{
+    width: 25%;
+    border: .1em solid black;
+    color: var(black);
+    align-self: center;
+  }
