@@ -20,7 +20,7 @@ function Layer(props) {
   return (
     <Suspense>
       <mesh
-        position={new THREE.Vector3(position.x, position.y, position.z)}>
+        position={new THREE.Vector3(position.x*10., position.y*10, position.z*10)}>
         <planeGeometry
           attach="geometry"
           args={[

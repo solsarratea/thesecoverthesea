@@ -13,7 +13,7 @@ function Postcards() {
                     {postcards.map((props) => {
                         const position = {
                             x: Math.random()*400-200,
-                            y: Math.random()*200,
+                            y: Math.random()*20,
                             z: Math.random()*500-250,
                         }    
                         return (<Layers
