@@ -203,6 +203,10 @@ img {
   color: black;
   text-align: center;
 }
+.about-text .center{
+  text-align: center;
+  align-items: baseline;
+}
 
 .about-text-invert{
   font-family: cursive;

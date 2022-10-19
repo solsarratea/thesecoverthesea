@@ -45,7 +45,7 @@ function UI({show,init, ...props}) {
           <p> Navigate through the sea covered by chromatic layers </p>
           <p>& find the cards posted by peers around the world.</p>
           <br></br>
-          <div className="about-text-invert">
+          <div className="center">
             <p>+ Observe the chromatic composition</p>
 
             <p>+ Observe flora and fauna</p>
