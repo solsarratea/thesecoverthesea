@@ -111,23 +111,57 @@ function Information(props: any) {
         
         >
             <div className="sub-block section1">
-                <video autoPlay controls={false} src="./section1.mp4" />      
+            <video controls={false} autoPlay>
+                <source src="./section1.mp4"
+                        type="video/mp4" />
+                <source src="./section1.webm"
+                        type="video/webm"/>
+            </video>
+
             </div>
             <div className="sub-block section2">
-                <video autoPlay controls={false}  src="./section2.mp4" ></video>            
+            <video controls={false} autoPlay>
+                <source src="./section2.mp4"
+                        type="video/mp4" />
+                <source src="./section2.webm"
+                        type="video/webm"/>
+            </video>    
             </div>
             <div className="sub-block section30 no-border">
-                <video autoPlay controls={false} src="./section30.mp4" ></video>
-            </div>
+            <video controls={false} autoPlay>
+                <source src="./section30.mp4"
+                        type="video/mp4" />
+                <source src="./section30.webm"
+                        type="video/webm"/>
+            </video>      </div>
             <div className="sub-block section31 no-border">
-                <video autoPlay controls={false} src="./section31.mp4" ></video>
-                <video  autoPlay controls={false} src="./section32.mp4" ></video>
+            <video controls={false} autoPlay>
+                <source src="./section31.mp4"
+                        type="video/mp4" />
+                <source src="./section31.webm"
+                        type="video/webm"/>
+                </video>
+                <video controls={false} autoPlay>
+                <source src="./section32.mp4"
+                        type="video/mp4" />
+                <source src="./section32.webm"
+                        type="video/webm"/>
+            </video>
             </div>
             <div className="sub-block section33 no-border">
-                <video autoPlay controls={false} src="./section33.mp4" ></video>
-            </div>
+            <video controls={false} autoPlay>
+                <source src="./section33.mp4"
+                        type="video/mp4" />
+                <source src="./section33.webm"
+                        type="video/webm"/>
+            </video> </div>
             <div className="sub-block section34">
-                <video autoPlay controls={false} src="./section34.mp4" ></video>
+            <video controls={false} autoPlay>
+                <source src="./section34.mp4"
+                        type="video/mp4" />
+                <source src="./section34.webm"
+                        type="video/webm"/>
+            </video>
             </div>
         </section>
            </>
