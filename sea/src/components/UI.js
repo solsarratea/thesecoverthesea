@@ -35,7 +35,7 @@ function UI({show,init, ...props}) {
         {...props}
       >
         <h2 className="about-subtitle">Creating New Dimensions</h2>
-        <h1 className="about-title">THESE COVERS THE SEA</h1>
+        <h1 className="about-title">THESE COVER THE SEA</h1>
         <div className="about-text" id="about">
           <div className="about-motiv glow" id="">
             <p> Imagine diving into something unkown for the first time.  </p>
