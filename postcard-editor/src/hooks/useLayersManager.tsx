@@ -33,19 +33,19 @@ const useLayersManager = create((set) => ({
     light: true,
     resetCam: false,
     takeScreenshot: false,
-    downloadJSON:false,
+    downloadJSON: false,
     layers: [],
     nextId: 0,
     selectedId: null,
     show: true,
     orbitControls: false,
-    setId: (id: number) => 
+    setId: (id: number) =>
         set((state: LayersState) => {
             return {
                 ...state,
                 selectedId: id
             }
-        }), 
+        }),
     addLayer: (newLayer: any) =>
         set((state: LayersState) => {
             const { color, ...rest } = newLayer;
@@ -57,7 +57,8 @@ const useLayersManager = create((set) => ({
                 pivotControls: true
             });
 
-            return {...state,
+            return {
+                ...state,
                 nextId: state.nextId + 1,
                 selectedId: state.nextId
             }
@@ -67,11 +68,15 @@ const useLayersManager = create((set) => ({
             var index = state.layers.findIndex(object => {
                 return object.id === id;
             });
-            state.layers.splice(index,1);
+            state.layers.splice(index, 1);
+            const newId = (state.layers.length > 0) ?
+                state.layers[state.layers.length - 1].id
+                : null;
+            
             return {
                 ...state,
-                selectedId: null
-            };
+                selectedId: newId
+            }
         }),
     setNewColor: (id: number, newcolor: RGBAColor) =>
         set((state: LayersState) => {
