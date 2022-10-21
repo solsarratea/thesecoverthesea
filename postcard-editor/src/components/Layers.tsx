@@ -109,7 +109,7 @@ function DownloadAsJSON() {
   useEffect(() => {
     if (downloadJSON) {
       const data = exportScene();
-      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data,null,4));
       downloadURI(dataStr, "postcard-data.json","download-json");
        setBoolean("downloadJSON", false);
     }
