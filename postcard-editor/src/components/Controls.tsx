@@ -186,8 +186,9 @@ export function Controls(props: ControlsProps) {
                        Design a postcard from  the images of dataset <a href="https://creating-new-dimensions.org/Georg-Forsters-Entdeckung-der-Suedsee/">Georg-Forsters-Entdeckung-der-Suedsee</a>, by composing chromatic layers.
                     </p>
                     <img src="./icono.png"></img>
+                    <p className="wip">POST your postcard to </p>
                     <p>
-                        POST your postcard to  <a href="https://thesecoverthesea.solsarratea.world/"> ↓  the sea</a>
+                        GO to  <a href="https://thesecoverthesea.solsarratea.world/"> ↓  the sea</a>
                     </p>
                     <p className="wip">
                         AND print it !
