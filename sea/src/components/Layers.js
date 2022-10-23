@@ -1,7 +1,7 @@
-import React, { Suspense, useRef } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import customMaterial from "./layerMaterial";
 import * as THREE from "three";
-import { useTexture } from "@react-three/drei";
+import { Html, useTexture } from "@react-three/drei";
     
 function Layer(props) {
   const {
@@ -11,16 +11,34 @@ function Layer(props) {
     deltaSmooth,
     mix,
     path,
-    position } = props;
+    rotation,
+    position,
+    scale
+  } = props;
   
-    //rotation={ new THREE.Vector3(rotation[0], rotation[1], rotation[2])}
-
+  const [newPosition,] =useState( {
+      x: (position.x ? position.x : 0),
+      y: (position.y ? position.y : 0),
+      z: (position.z ? position.z : 0)
+    });
+  
+  const [newRotation,] = useState(() => {
+    if (!rotation) return {x:0, y:0, z:0}
+    return {
+      x: (rotation["_x"] ? rotation["_x"] : 0),
+      y: (rotation["_y"] ? rotation["_y"] : 0),
+      z: (rotation["_z"] ? rotation["_z"] : 0),
+    }
+  });
+  
   var texture = useTexture(path);
-   
+  
   return (
     <Suspense>
       <mesh
-        position={new THREE.Vector3(position.x*10., position.y*10, position.z*10)}>
+        rotation={ new THREE.Euler(newRotation.x, newRotation.y, newRotation.z ,'XYZ')}
+        position={new THREE.Vector3(newPosition.x*10, newPosition.y*10, newPosition.z*10)}
+        scale={scale}>
         <planeGeometry
           attach="geometry"
           args={[
@@ -51,15 +69,28 @@ function Layer(props) {
 
 export default function Layers(props) {
   const layerRef = useRef();
-  const { author, data } = props;
+  const { author, artwork, data } = props;
+  
+  const [hovered, setHover] = useState(false);
+  const [scale, setScale] = useState(1);
+
+  const hover = e => { e.stopPropagation(); setHover(true);setScale(1.5) }
+  const unhover = e => { e.stopPropagation(); setHover(false);setScale(1.) }
 
   return (
-    <group ref={layerRef} position={props.position}>
+    <group ref={layerRef} position={props.position} onPointerOver={hover} onPointerOut={unhover} >
       {data.map((props) => {
-
-        return <Layer {...props} key={`${author}-layer-${props.id}`} />;
+        return <Layer {...props} scale={scale}  key={`${author}-${artwork}-layer-${props.id}`} />;
       })}
-       </group>
+      {hovered && props.author !== 'demo' && (
+          <Html position-y={-20} scale={props.position.z} >
+          <div className="layer-content">
+
+              Posted by {props.author}
+            </div>
+          </Html>
+      )}
+    </group>
   );
 }
 

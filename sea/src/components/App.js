@@ -8,6 +8,7 @@ import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { hot } from "react-hot-loader/root";
 import PositionalSound from "./Audio.js";
+import useEnvManager from "./useEnvManager.js";
 const DisableRender = () => useFrame(() => null, 1000);
 
 const audioData = {
@@ -33,7 +34,7 @@ function App({loaded}) {
   const [modalOn, ] = useState({
     value: false,
   });
-
+  const envPath = useEnvManager(state => state.envPath);
 
   return(
     <Suspense fallback={null}>
@@ -47,7 +48,7 @@ function App({loaded}) {
         <Environment
           scale={1}
           background={true}
-          path={`textures/skybox/gloriousPink/`}
+          path={envPath}
           files={[`px.png`, `nx.png`, `py.png`, `ny.png`, `pz.png`, `nz.png`]}
         />
           <Ocean />

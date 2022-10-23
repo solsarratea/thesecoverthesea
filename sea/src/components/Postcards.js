@@ -18,7 +18,7 @@ function Postcards() {
                         }    
                         return (<Layers
                             position={new Vector3(position.x, position.y, position.z)}
-                            key={`${props.author}-postcard`}
+                            key={`${props.author}-${props.artwork}-postcard`}
                             {...props} />)
                     })}
                 </> : null

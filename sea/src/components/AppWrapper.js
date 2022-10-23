@@ -33,7 +33,7 @@ function OpacityLayer({onSuccess,  offTransition, enter}) {
 
     const [totalopacity, setTotalopacity] = useState(1);
     const [counter, setCounter] = useState(0);
-   // const [width, setWidth] = useState(0);
+
 
     useEffect(() => {
         THREE.DefaultLoadingManager.onStart = () => {
@@ -48,6 +48,9 @@ function OpacityLayer({onSuccess,  offTransition, enter}) {
         THREE.DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
             const v =(itemsLoaded / itemsTotal) * 100;
             console.log("Loading scene: ", v, "%");
+            const value = (100. - v * 0.5);
+            document.querySelector(':root').style.setProperty('--invert-bg', `${value}%`);
+           
         }
         if (enter) {setTotalopacity(0.75)};
         if ((enter && finished)){
@@ -68,7 +71,11 @@ function OpacityLayer({onSuccess,  offTransition, enter}) {
     return (  <div style={{ display: 'flex' }}>
         {transitions(
             (props) =>
-            (<a.div className={"loading"} style={{ opacity: (1 - counter / UPPER_BOUND_TRANSITION) * totalopacity }} />
+            (<a.div className={"loading"}
+                style={{
+                    opacity: (1 - counter / UPPER_BOUND_TRANSITION) * totalopacity,
+                }
+                } />
             ))}
         </div>)
                   

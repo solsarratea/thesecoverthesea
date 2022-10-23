@@ -2,6 +2,30 @@
   box-sizing: border-box;
 }
 
+:root {
+  --background: black;
+  --font-color: #f8f8f1;
+  --font-size-h1: 18px;
+  --font-size-h2: 16px;
+  --font-size: 13px;
+  --invert-bg: 100%;
+ }
+
+
+@media only screen and (max-width: 600px) {
+
+  :root {
+    --background: black;
+    --font-color: #f8f8f1;
+    --font-size-h1: 14px;
+    --font-size-h2: 13px;
+    --font-size: 11px;
+    --invert-bg: 100%;
+   }
+  
+}
+
+
 html,
 body,
 #root {
@@ -14,20 +38,20 @@ body,
 }
 
 body {
-  color: black;
+  color: var(--font-color);
   user-select: none;
   font-family: "JetBrains Mono", source-code-pro, Menlo, Monaco, Consolas,
   "Courier New", monospace;
 }
 
 .background {
-  background-color: black;
+  background-color: var(--font-color);
   width: 100%;
   height: 100%;
 }
 
 .entrar {
-  background-color: black !important;
+  background-color: var(--font-color) !important;
   border: none;
   color: white;
   text-align: center;
@@ -57,4 +81,17 @@ body {
 .about-wishes{
   text-align: center;
   overflow-wrap: break-word;
+}
+
+
+.layer-content {
+  padding: 1em;
+  text-align: center;
+  background-color: var(--background);
+  color:var(--font-color);
+  display: block;
+  width: max-content;
+  font-family: cursive;
+  border: 1px solid  var(--font-color);
+  box-shadow: 0 0 .5em #ffcaed;
 }

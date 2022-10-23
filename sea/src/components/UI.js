@@ -1,6 +1,7 @@
 import DisplayInfo from "./DisplayInfo.js";
 import React from 'react';
 import "../styles/ui.css";
+import useEnvManager from "./useEnvManager.js";
 
 /* eslint-disable */
 const boat = `
@@ -15,8 +16,9 @@ const boat = `
       ^^^^      ^^^
 `
 
+function UI({ show, init, ...props }) {
+  const envManager = useEnvManager(state => state);
 
-function UI({show,init, ...props}) {
   return (
     <main>
       {init ? <DisplayInfo id="helpContainer" src="UI/Question.png" styleClass="help" show={show}> 
@@ -24,8 +26,10 @@ function UI({show,init, ...props}) {
         <div style={{whiteSpace:"pre"}}>
       {boat}
         </div>
-        
-          <button className="enter">NAVIGATE</button> 
+        {/* <button className="enter" onClick={()=>envManager.setDay()}>day</button>
+        <button className="enter" onClick={()=>envManager.setNight()}>night</button>
+        <br /> */}
+        <button className="enter">NAVIGATE</button> 
       </DisplayInfo>
       : null}
       <DisplayInfo
