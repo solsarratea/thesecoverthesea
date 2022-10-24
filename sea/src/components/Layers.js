@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, useRef, useState } from 'react'
 import customMaterial from './layerMaterial'
 import * as THREE from 'three'
 import { Html, useTexture } from '@react-three/drei'
+import { useThree } from '@react-three/fiber'
 
 function Layer(props) {
   const { colorIn, colorOut, deltaColor, deltaSmooth, mix, path } = props
@@ -70,6 +71,7 @@ function Layer(props) {
 export default function Layers(props) {
   const layerRef = useRef()
   const { author, artwork, data } = props
+  const [onMe, setOnMe] = useState(false)
 
   const [hovered, setHover] = useState(false)
   const [scale, setScale] = useState(1)
@@ -85,12 +87,23 @@ export default function Layers(props) {
     setScale(1)
   }
 
+  const { camera } = useThree()
+
   return (
-    <group
+    <mesh
       ref={layerRef}
       position={props.position}
       onPointerOver={hover}
       onPointerOut={unhover}
+      onClick={(e) => {
+        if (onMe) {
+          props.updateControls(props.position, null)
+          setOnMe(false)
+        } else {
+          props.updateControls(props.position, true)
+          setOnMe(true)
+        }
+      }}
     >
       {data.map((props) => {
         return (
@@ -106,7 +119,7 @@ export default function Layers(props) {
           <div className="layer-content">Posted by {props.author}</div>
         </Html>
       )}
-    </group>
+    </mesh>
   )
 }
 

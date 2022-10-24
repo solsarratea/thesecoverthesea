@@ -1,0 +1,101 @@
+{
+  "layersData": [
+    {
+      "deltaColor": 0.75,
+      "deltaSmooth": 0.85,
+      "path": "images/Memb-I-00131_0011.jpg",
+      "colorIn": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 33,
+        "g": 66,
+        "b": 175,
+        "a": 0.5
+      },
+      "id": 5,
+      "pivotControls": false,
+      "mix": 0.39,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.75,
+      "deltaSmooth": 0.61,
+      "path": "images/Memb-I-00131_0011.jpg",
+      "colorIn": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 181,
+        "g": 136,
+        "b": 63,
+        "a": 0.5
+      },
+      "id": 7,
+      "pivotControls": false,
+      "mix": 1,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1.4000000000000001
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.2,
+      "deltaSmooth": 0.33,
+      "path": "images/Memb-I-00131_0011.jpg",
+      "colorIn": {
+        "r": 57,
+        "g": 78,
+        "b": 148,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 175,
+        "g": 53,
+        "b": 33,
+        "a": 0.5
+      },
+      "id": 10,
+      "pivotControls": false,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -2
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    }
+  ],
+  "lightMode": true
+}

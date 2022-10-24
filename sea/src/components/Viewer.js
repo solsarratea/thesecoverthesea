@@ -1,33 +1,67 @@
-import { useRef, useEffect } from "react";
-import { useThree  } from "@react-three/fiber";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import * as THREE from "three";
+import { useThree } from "@react-three/fiber";
+import { useKeyboardControls } from "../hooks/useKeyboardControls";
+import { Vector3 } from "three";
+import  PointerLockControls from "./PointerLockControls";
+import { useMemo,useState } from "react";
 
 function Viewer(props) {
-    const { camera, gl, scene } = useThree();
+    const { camera , clock } = useThree();
+  
+    const [handleEvent, setHandleEvent]= useState(false);
+    const [last, setLast]=useState(0);
+    const onSuccess = (e)=>{
+        setHandleEvent(e);
+        const delta = Math.floor(clock.oldTime-last);
+        if(delta > 1000){
+            setLast(clock.oldTime);
+        }
 
-    const ref = useRef();
-    useEffect(
-        () => {
-            const controls = new OrbitControls(camera, gl.domElement);
+    }
+    const { moveForward, moveBackward, moveLeft, moveRight } = useKeyboardControls({onSuccess: onSuccess});
+    const INCREMENT = 15;
 
-            controls.minDistance = 3;
-            controls.maxDistance = 2000;
+    useMemo(() => {
+        const direction = new Vector3();
+        const frontVector = new Vector3(
+            0,
+            0,
+            Number(moveBackward) - Number(moveForward)
+        );
+        const sideVector = new Vector3(
+            Number(moveLeft) - Number(moveRight),
+            0,
+            0
+        );
 
-            return () => {
-                controls.dispose();
-            };
-        },
-        [camera, gl]
+        direction
+            .subVectors(frontVector, sideVector)
+            .normalize()
+
+
+        camera.getWorldDirection( direction);
+        direction.x = Math.round(direction.x);
+        direction.y =  Math.round(direction.y); // TODO: ask if we want above/below
+        direction.z = Math.round(direction.z);
+
+        camera.position.addScaledVector(direction, -INCREMENT*frontVector.z);
+        const rotatedDirection = new Vector3(direction.z, direction.y, -direction.x);
+        camera.position.addScaledVector(rotatedDirection, INCREMENT*sideVector.x);
+        setHandleEvent(false);
+  
+        /*
+          const de = document.getElementById('debug-0');
+          de.innerHTML = "mf "+ moveForward  +" || mb "+ moveBackward;
+          de.innerHTML += "|| fv "+ frontVector.z  +" || sv "+ sideVector.x;
+          de.innerHTML += "world diection: "+ direction.x +" || " +  direction.y +" || " + direction.z +
+          "|| cam direction: "+ camera.position.x +" || " +  camera.position.y +" || " + camera.position.z;*/
+
+    },[ camera, handleEvent, moveForward, moveBackward, moveLeft, moveRight]);
+
+    return (
+            <>
+            <PointerLockControls />
+            </>
     );
-
-    scene.background = new THREE.Color( 0x000000 );
-
-  return (
-    <>
-      <mesh ref={ref} />
-    </>
-  );
 }
 
 export default Viewer;

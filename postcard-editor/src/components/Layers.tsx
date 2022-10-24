@@ -230,3 +230,45 @@ export function Layers(props: LayersProps) {
     </div>
   );
 }
+
+/**
+ * For debugging:
+ * 
+ * 
+function selectLayers(ar: any, length: number) {
+  console.log(length)
+  var res = [] as any; const selected = [
+    0., 0., 0.,
+    1., 1., 0.,
+    1., 1., 1.,
+  ];
+  var j = 0;
+
+  while (j < length) {
+    if (selected[j]) {
+      res.push(ar[j]);
+    }
+    j++;
+  }
+  console.log(res)
+  return res;
+}
+
+
+export function Layers(props: LayersProps) {
+  const { size } = props;
+  const state = useLayersManager((state: any) => state);
+
+  useEffect(() => {
+    
+    const promise = import('../colaboraciones/demo.json')
+    promise.then(value => {
+      const l = 6; 
+    // window.alert(value.layersData.length)
+    const v = selectLayers(value.layersData, l)
+    state.setLayers(v);
+      
+    })
+  } , []);
+ * 
+ */

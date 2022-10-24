@@ -13,6 +13,7 @@ export type Layer = {
   pivotId: number;
 };
 
+<<<<<<< HEAD
 export type LayersState = {
   layers: Layer[];
   nextId: number;
@@ -28,6 +29,43 @@ export type LayersState = {
   takeScreenshot: boolean;
   light: boolean;
 };
+=======
+
+const useLayersManager = create((set) => ({
+    light: true,
+    resetCam: false,
+    takeScreenshot: false,
+    downloadJSON: false,
+    layers: [],
+    nextId: 0,
+    selectedId: null,
+    show: true,
+    orbitControls: false,
+    setLayers: (layers: []) =>
+        set((state: LayersState) => {
+            return {
+                ...state,
+                layers
+                }
+            }),
+    setId: (id: number) =>
+        set((state: LayersState) => {
+            return {
+                ...state,
+                selectedId: id
+            }
+        }),
+    addLayer: (newLayer: any) =>
+        set((state: LayersState) => {
+            const { color, ...rest } = newLayer;
+            state.layers.push({
+                ...rest,
+                colorIn: color,
+                colorOut: color,
+                id: state.nextId,
+                pivotControls: true
+            });
+>>>>>>> 51706285 (wip)
 
 type LayerManager = {
   light: boolean;

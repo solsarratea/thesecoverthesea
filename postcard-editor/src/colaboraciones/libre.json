@@ -1,0 +1,69 @@
+{
+  "layersData": [
+    {
+      "deltaColor": 0.39,
+      "deltaSmooth": 1,
+      "path": "images/Memb-I-00131_0010.jpg",
+      "colorIn": {
+        "r": 16,
+        "g": 81,
+        "b": 20,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 16,
+        "g": 81,
+        "b": 20,
+        "a": 0.5
+      },
+      "id": 5,
+      "pivotControls": true,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.14,
+      "deltaSmooth": 0.3,
+      "path": "images/Memb-I-00131_0010.jpg",
+      "colorIn": {
+        "r": 154,
+        "g": 226,
+        "b": 159,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 154,
+        "g": 226,
+        "b": 159,
+        "a": 0.5
+      },
+      "id": 6,
+      "pivotControls": true,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1.2000000000000002
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    }
+  ],
+  "lightMode": true
+}
