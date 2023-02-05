@@ -74,20 +74,25 @@ export default function Layers(props) {
   const [onMe, setOnMe] = useState(false)
 
   const [hovered, setHover] = useState(false)
-  const [scale, setScale] = useState(1)
 
   const hover = (e) => {
     e.stopPropagation()
     setHover(true)
-    setScale(1.5)
   }
   const unhover = (e) => {
     e.stopPropagation()
     setHover(false)
-    setScale(1)
   }
 
-  const { camera } = useThree()
+  const activeName = useCameraManager((state) => state.name)
+  const set = useCameraManager((state) => state.set)
+  const [name] = useState(`${author}-${artwork}`)
+
+  useEffect(() => {
+    if (name !== activeName) {
+      setOnMe(false)
+    }
+  }, [activeName, name])
 
   return (
     <mesh
@@ -97,11 +102,12 @@ export default function Layers(props) {
       onPointerOut={unhover}
       onClick={(e) => {
         if (onMe) {
-          props.updateControls(props.position, null)
+          //props.updateControls(props.position, null)
           setOnMe(false)
         } else {
           props.updateControls(props.position, true)
           setOnMe(true)
+          set('name', name)
         }
       }}
     >
@@ -109,13 +115,13 @@ export default function Layers(props) {
         return (
           <Layer
             {...props}
-            scale={scale}
+            scale={hovered || onMe ? 1.5 : 1}
             key={`${author}-${artwork}-layer-${props.id}`}
           />
         )
       })}
-      {hovered && props.author !== 'demo' && (
-        <Html position-y={-20} scale={props.position.z}>
+      {(hovered || onMe) && props.author !== 'demo' && (
+        <Html position-y={-18} transform scale={4}>
           <div className="layer-content">Posted by {props.author}</div>
         </Html>
       )}
