@@ -6,7 +6,7 @@ function shuffle(array) {
   let currentIndex = array.length,
     randomIndex
 
-  while (currentIndex != 0) {
+  while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex)
     currentIndex--
     ;[array[currentIndex], array[randomIndex]] = [
@@ -19,8 +19,6 @@ function shuffle(array) {
 }
 
 const postcardsSource = shuffle(data.postcards)
-
-const rand = Math.random()
 
 const randomPos = (idx) => {
   return {

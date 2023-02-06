@@ -11,7 +11,6 @@ function Layer(props) {
     deltaSmooth,
     mix,
     path,
-    rotation,
     position,
     scale,
   } = props
@@ -36,7 +35,7 @@ function Layer(props) {
       }
       setInitTransform(true)
     }
-  }, [meshRef, props])
+  }, [meshRef, props, initTransform])
 
   return (
     <Suspense>
