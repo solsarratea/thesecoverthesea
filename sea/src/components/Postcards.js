@@ -24,9 +24,9 @@ const rand = Math.random()
 
 const randomPos = (idx) => {
   return {
-    x: Math.cos((idx / 9) * Math.PI * 2) * 150,
+    x: Math.cos((idx / 10) * Math.PI * 2) * 360 - Math.sin(idx * 300) * 180,
     y: 10,
-    z: -Math.sin((idx / 9) * Math.PI * 2) * 150,
+    z: -Math.sin((idx / 10) * Math.PI * 2) * 180,
   }
 }
 
