@@ -1,40 +1,38 @@
-import create from 'zustand';
+import { create } from "zustand";
 
- export type MediaState = { 
-    loaded: boolean,
-    selected: {
-        path: string,
-        idx: number,
-    },
-    setLoaded: Function,
-    setSelectedPath: Function
- }
+export type MediaState = {
+  loaded: boolean;
+  selected: {
+    path: string;
+    idx: number;
+  };
+  setLoaded: Function;
+  setSelectedPath: Function;
+};
 
-const useSourceManager = create((set) => ({
-    selected: {
-        path: "",
-        idx: 1,
-    },
-    loaded: false,
-    setLoaded: () =>
-        set((state: MediaState) => {
-            if (state.loaded) {
-              //  console.log(state);
-                return state
-            } else {
-    
-                return {...state,
-                    loaded: true,
-                }
-            };
-        }),
-    setSelectedPath: (path: string, idx: number) =>
-        set((state: MediaState) => {
-           // console.log(state);
-            return {
-                selected: { path: path, idx: idx}
-            };
-        })
+const useSourceManager = create<MediaState>((set: any) => ({
+  selected: {
+    path: "",
+    idx: 1,
+  },
+  loaded: false,
+  setLoaded: () =>
+    set((state: MediaState) => {
+      console.log(state);
+      if (state.loaded) {
+        return state;
+      } else {
+        console.log(state);
+        return { ...state, loaded: true };
+      }
+    }),
+  setSelectedPath: (path: string, idx: number) =>
+    set((state: MediaState) => {
+      // console.log(state);
+      return {
+        selected: { path: path, idx: idx },
+      };
+    }),
 }));
 
-export default  useSourceManager;
+export default useSourceManager;
