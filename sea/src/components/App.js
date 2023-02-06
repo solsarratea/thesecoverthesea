@@ -16,7 +16,7 @@ const DisableRender = () => useFrame(() => null, 1000)
 const audioData = {
   audio1: {
     position: [0, 0, 0],
-    path: '/audio/ocean.mp3',
+    path: '/audio/ocean-Emi-Vega.wav',
     refdistance: 50,
     cone: {
       outer: 360,

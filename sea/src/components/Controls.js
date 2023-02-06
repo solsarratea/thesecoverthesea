@@ -27,9 +27,13 @@ export default function Controls({
     const controls = new CameraControls(camera, gl.domElement)
     controls.maxZoom = 20
     controls.minZoom = 0.2
+    controls.maxPolarAngle = Math.PI / 2
+    controls._boundary.min.y = 0
+    controls.maxDistance = 1500
     return controls
     //eslint-disable-next-line
   }, [])
+  window.c = controls
 
   controls.mouseButtons.wheel = CameraControls.ACTION.ZOOM
 
@@ -42,35 +46,45 @@ export default function Controls({
   const set = useCameraManager((state) => state.set)
   const [lastpos, setLast] = useState(null)
 
+  const disableIfNecesarry = () => {
+    if (active) {
+      set('active', false)
+    }
+  }
+
   useEffect(() => {
     leftKey.addEventListener('holding', function (event) {
+      disableIfNecesarry()
       controls.truck(-0.05 * event.deltaTime, 0, true)
     })
     rightKey.addEventListener('holding', function (event) {
+      disableIfNecesarry()
       controls.truck(0.05 * event.deltaTime, 0, true)
     })
     upKey.addEventListener('holding', function (event) {
+      disableIfNecesarry()
       controls.forward(0.05 * event.deltaTime, true)
     })
     downKey.addEventListener('holding', function (event) {
+      disableIfNecesarry()
       controls.forward(-0.05 * event.deltaTime, true)
     })
 
     return () => {
       leftKey.removeEventListener('holding', function (event) {
-        set('active', false)
+        disableIfNecesarry()
         controls.truck(-0.002 * event.deltaTime, 0, true)
       })
       rightKey.removeEventListener('holding', function (event) {
-        set('active', false)
+        disableIfNecesarry()
         controls.truck(0.002 * event.deltaTime, 0, true)
       })
       upKey.removeEventListener('holding', function (event) {
-        set('active', false)
+        disableIfNecesarry()
         controls.forward(0.005 * event.deltaTime, true)
       })
       downKey.removeEventListener('holding', function (event) {
-        set('active', false)
+        disableIfNecesarry()
         controls.forward(-0.005 * event.deltaTime, true)
       })
     }
@@ -104,8 +118,8 @@ export default function Controls({
       } else {
         setLast(controls.getPosition())
       }
-      //controls.azimuthAngle += 5 * delta * THREE.MathUtils.DEG2RAD;
     }
+
     return controls.update(delta)
   })
 }
