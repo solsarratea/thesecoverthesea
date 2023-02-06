@@ -1,38 +1,35 @@
-import React, { Suspense, useEffect } from 'react';
-import customMaterial,{ LayerUniforms }  from './layerMaterial';
-import useLayersManager from '../hooks/useLayersManager';
-import * as THREE from 'three';
-import { Canvas } from '@react-three/fiber';
-import { useThree } from '@react-three/fiber';
-import { OrbitControls, useTexture, PivotControls } from '@react-three/drei'
-import '../styles/layers.css';
-import { RGBAColor } from '../types/common';
-import { Mesh, StaticReadUsage } from 'three';
+import React, { Suspense, useEffect, useRef, useState } from "react";
+import customMaterial, { LayerUniforms } from "./layerMaterial";
+import useLayersManager from "../hooks/useLayersManager";
+import * as THREE from "three";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls, useTexture, PivotControls } from "@react-three/drei";
+import "../styles/layers.css";
+import { RGBAColor } from "../types/common";
 
 export type LayersProps = {
-    size: {
-      left: number,
-      top: number,
-      width: number,
-      height: number,
-    },
-  className: string
-}
-  
-export type LayerProps = {
-  colorIn: RGBAColor,
-  colorOut: RGBAColor,
-  deltaColor: number,
-  deltaSmooth: number,
-  id: number,
-  mix: number,
-  path: string,
-  pivotControls: boolean
+  size: {
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+  };
+  className: string;
+};
 
+export type LayerProps = {
+  colorIn: RGBAColor;
+  colorOut: RGBAColor;
+  deltaColor: number;
+  deltaSmooth: number;
+  id: number;
+  pivotId: number;
+  mix: number;
+  path: string;
+  pivotControls: boolean;
 };
 
 function Layer(props: LayerProps) {
-
   const {
     colorIn,
     colorOut,
@@ -41,35 +38,74 @@ function Layer(props: LayerProps) {
     id,
     mix,
     path,
-    pivotControls
-    } = props;
- 
+    pivotControls,
+  } = props;
 
-    var texture = useTexture(path);
-    const setId = useLayersManager((state: any) => state.setId);
-    const layers = useLayersManager((state: any) => state.layers);
+  var texture = useTexture(path);
+  const setId = useLayersManager((state: any) => state.setId);
+  const setPivotId = useLayersManager((state: any) => state.setPivotId);
+  const meshRef = useRef<any>();
+  const pivotRef = useRef<any>();
+  const { scene } = useThree();
+
+  useEffect(() => {
+    if (pivotRef.current) {
+      setPivotId(id, pivotRef.current.id);
+      const pc = scene.getObjectById(pivotRef.current.id) as any;
+      (window as any).m = pc;
+    }
+  }, [pivotRef.current]);
+
   return (
-        <Suspense>
-         <PivotControls visible={pivotControls} rotation={[0, 0., 0]} anchor={[0, 0, 0]} scale={75} depthTest={false} fixed lineWidth={2}>
-            <mesh name={`layer-${props.id}`} position={new THREE.Vector3(0., 0., -id * .2)} onClick={() => {
-              setId(id)
-            }
-            }>
-                  <planeGeometry  attach="geometry" args={[4*texture.source.data.naturalWidth/texture.source.data.naturalHeight,4]} />
-                  <shaderMaterial  transparent={true} 
-                    attach="material"
-                  args={[customMaterial({ texture, colorIn, colorOut, deltaColor, deltaSmooth, mix })]}
-                    side={THREE.DoubleSide}
-                />
-              </mesh>
-          </PivotControls>
-      </Suspense>
-      
-    
-    )
+    <Suspense>
+      <PivotControls
+        ref={pivotRef}
+        visible={pivotControls}
+        rotation={[0, 0, 0]}
+        anchor={[0, 0, 0]}
+        scale={75}
+        depthTest={false}
+        fixed
+        lineWidth={2}
+      >
+        <mesh
+          ref={meshRef}
+          name={`layer-${props.id}`}
+          position={new THREE.Vector3(0, 0, -id * 0.2)}
+          onClick={() => {
+            setId(id);
+          }}
+        >
+          <planeGeometry
+            attach="geometry"
+            args={[
+              (4 * texture.source.data.naturalWidth) /
+                texture.source.data.naturalHeight,
+              4,
+            ]}
+          />
+          <shaderMaterial
+            transparent={true}
+            attach="material"
+            args={[
+              customMaterial({
+                texture,
+                colorIn,
+                colorOut,
+                deltaColor,
+                deltaSmooth,
+                mix,
+              }),
+            ]}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      </PivotControls>
+    </Suspense>
+  );
 }
 
-function downloadURI(uri:string, name:string, id: string) {
+function downloadURI(uri: string, name: string, id: string) {
   var element = document.getElementById(id);
   if (element) {
     const link = element as HTMLAnchorElement;
@@ -82,56 +118,59 @@ function downloadURI(uri:string, name:string, id: string) {
 
 function DownloadAsJSON() {
   const { scene } = useThree();
-  const downloadJSON = useLayersManager((state:any) =>state.downloadJSON)
+  const downloadJSON = useLayersManager((state: any) => state.downloadJSON);
   const setBoolean = useLayersManager((state: any) => state.setBoolean);
   const state = useLayersManager((state: any) => state);
-  
-  const exportScene = () => {
 
-      const layersData = state.layers.map((layer: LayerProps) => {
-      const { id } = layer;
-      const mesh = scene.getObjectByName(`layer-${id}`) as Mesh;
-      
-        
+  const exportScene = () => {
+    const layersData = state.layers.map((layer: LayerProps) => {
+      const { id, pivotId } = layer;
+      const mesh = scene.getObjectByName(`layer-${id}`) as THREE.Mesh;
+      const pc = scene.getObjectById(pivotId);
+      var matrix = null;
+      if (pc) {
+        matrix = pc.matrix as THREE.Matrix4;
+      }
+
       return {
         ...layer,
         position: mesh.position,
-        rotation: mesh.rotation
-      }
-      })
-    
+        rotation: mesh.rotation,
+        matrix: matrix,
+      };
+    });
+
     return {
       layersData,
-      lightMode: state.light
+      lightMode: state.light,
     };
   };
-  
+
   useEffect(() => {
     if (downloadJSON) {
       const data = exportScene();
-      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data,null,4));
-      downloadURI(dataStr, "postcard-data.json","download-json");
-       setBoolean("downloadJSON", false);
+      var dataStr =
+        "data:text/json;charset=utf-8," +
+        encodeURIComponent(JSON.stringify(data, null, 4));
+      downloadURI(dataStr, "postcard-data.json", "download-json");
+      setBoolean("downloadJSON", false);
     }
-
   }, [downloadJSON]);
   return <></>;
 }
-  
 
 function TakeScreenshot() {
-  const { gl, scene, camera } = useThree()
-  const takeScreenshot = useLayersManager((state:any) =>state.takeScreenshot)
+  const { gl, scene, camera } = useThree();
+  const takeScreenshot = useLayersManager((state: any) => state.takeScreenshot);
   const setBoolean = useLayersManager((state: any) => state.setBoolean);
-  
+
   useEffect(() => {
     if (takeScreenshot) {
-      gl.render(scene, camera)
+      gl.render(scene, camera);
       const screenshot = gl.domElement.toDataURL();
-      downloadURI(screenshot, "postcard-view.png","download-image");
+      downloadURI(screenshot, "postcard-view.png", "download-image");
       setBoolean("takeScreenshot", false);
     }
-
   }, [takeScreenshot]);
 
   return <></>;
@@ -139,26 +178,24 @@ function TakeScreenshot() {
 
 function ResetCamera() {
   const { camera } = useThree();
-  const resetCam = useLayersManager((state:any) =>state.resetCam)
+  const resetCam = useLayersManager((state: any) => state.resetCam);
   const setBoolean = useLayersManager((state: any) => state.setBoolean);
-  
-  useEffect(() => {
-    camera.position.set( 0, 0, 4);
-    setBoolean("resetCam", false); 
 
+  useEffect(() => {
+    camera.position.set(0, 0, 4);
+    setBoolean("resetCam", false);
   }, [resetCam]);
 
   return <></>;
 }
 
-
-
-
 export function Layers(props: LayersProps) {
   const { size } = props;
   const state = useLayersManager((state: any) => state);
 
-    return (<div {...props}
+  return (
+    <div
+      {...props}
       style={{
         bottom: size.top,
         left: size.left,
@@ -168,34 +205,28 @@ export function Layers(props: LayersProps) {
     >
       <section id="layers-layout">
         <section id="three-canvas">
-          <Canvas shadows
+          <Canvas
+            shadows
             raycaster={{ params: { Line: { threshold: 0.03 } } }}
-            gl={{ preserveDrawingBuffer: true }} 
+            gl={{ preserveDrawingBuffer: true }}
             camera={{
               position: new THREE.Vector3(0, 0, 4),
-              aspect: size.width/size.height
-            }}>
+              aspect: size.width / size.height,
+            }}
+          >
             <group name="group-layers">
               {state.layers.map((props: LayerProps) => {
-                  return (
-                    <Layer  {...props} key={`layer-${props.id}`} />
-                  )
-                })}
+                return <Layer {...props} key={`layer-${props.id}`} />;
+              })}
             </group>
-              
-                {state.orbitControls ? <OrbitControls makeDefault/> : null}
-                <TakeScreenshot />
-                <DownloadAsJSON/>
-                <ResetCamera />
-              </Canvas>
-          
-          </section> 
-      </section>
-        
-      
-     
-        
-      </div>
-      )
-}
 
+            {state.orbitControls ? <OrbitControls makeDefault /> : null}
+            <TakeScreenshot />
+            <DownloadAsJSON />
+            <ResetCamera />
+          </Canvas>
+        </section>
+      </section>
+    </div>
+  );
+}

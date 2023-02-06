@@ -4,7 +4,7 @@ import { Vector3 } from 'three';
 const data = require('../postcards.json');
 
 function Postcards() {
-    const [postcards, ]= useState(data.postcards)
+    const [postcards,] = useState(data.postcards);
     return (
         <>
         {
