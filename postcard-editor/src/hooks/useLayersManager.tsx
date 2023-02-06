@@ -1,6 +1,6 @@
-import { create } from "zustand";
+import create from "zustand";
 import { RGBAColor } from "../types/common";
-import { Matrix4 } from "three";
+
 export type Layer = {
   colorIn: RGBAColor;
   colorOut: RGBAColor;
@@ -75,7 +75,6 @@ const useLayersManager = create<LayerManager>((set) => ({
         id: state.nextId,
         pivotControls: true,
       });
-
       return {
         ...state,
         nextId: state.nextId + 1,
@@ -124,6 +123,7 @@ const useLayersManager = create<LayerManager>((set) => ({
       var index = state.layers.findIndex((object) => {
         return object.id === id;
       });
+
       var currentValue = state.layers[index].pivotControls;
       state.layers[index].pivotControls = !currentValue;
       return {

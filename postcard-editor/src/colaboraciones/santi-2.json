@@ -1,0 +1,325 @@
+{
+  "layersData": [
+    {
+      "deltaColor": 0.63,
+      "deltaSmooth": 0,
+      "path": "images/Memb-I-00131_0032.jpg",
+      "colorIn": {
+        "r": 64,
+        "g": 222,
+        "b": 78,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 64,
+        "g": 222,
+        "b": 78,
+        "a": 0.5
+      },
+      "id": 0,
+      "pivotControls": false,
+      "mix": 1,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.63,
+      "deltaSmooth": 0,
+      "path": "images/Memb-I-00131_0031.jpg",
+      "colorIn": {
+        "r": 64,
+        "g": 222,
+        "b": 78,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.5
+      },
+      "id": 1,
+      "pivotControls": false,
+      "mix": 0.76,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.2
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.63,
+      "deltaSmooth": 0,
+      "path": "images/Memb-I-00131_0031.jpg",
+      "colorIn": {
+        "r": 64,
+        "g": 222,
+        "b": 78,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 64,
+        "g": 222,
+        "b": 78,
+        "a": 0.5
+      },
+      "id": 2,
+      "pivotControls": false,
+      "mix": 1,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.4
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.63,
+      "deltaSmooth": 0.11,
+      "path": "images/Memb-I-00131_0031.jpg",
+      "colorIn": {
+        "r": 49,
+        "g": 110,
+        "b": 42,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.5
+      },
+      "id": 3,
+      "pivotControls": false,
+      "mix": 1,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.6000000000000001
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.63,
+      "deltaSmooth": 0.15,
+      "path": "images/Memb-I-00131_0025.jpg",
+      "colorIn": {
+        "r": 59,
+        "g": 26,
+        "b": 36,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 70,
+        "g": 157,
+        "b": 194,
+        "a": 0.5
+      },
+      "id": 4,
+      "pivotControls": false,
+      "mix": 1,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.8
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.44,
+      "deltaSmooth": 0.64,
+      "path": "images/Memb-I-00131_0002.jpg",
+      "colorIn": {
+        "r": 255,
+        "g": 173,
+        "b": 3,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 255,
+        "g": 173,
+        "b": 3,
+        "a": 0.5
+      },
+      "id": 5,
+      "pivotControls": false,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.38,
+      "deltaSmooth": 0.27,
+      "path": "images/Memb-I-00131_0042.jpg",
+      "colorIn": {
+        "r": 69,
+        "g": 194,
+        "b": 193,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 70,
+        "g": 182,
+        "b": 194,
+        "a": 0.5
+      },
+      "id": 7,
+      "pivotControls": false,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1.4000000000000001
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.36,
+      "deltaSmooth": 0.33,
+      "path": "images/Memb-I-00131_0026.jpg",
+      "colorIn": {
+        "r": 70,
+        "g": 129,
+        "b": 194,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 86,
+        "g": 29,
+        "b": 104,
+        "a": 0.5
+      },
+      "id": 8,
+      "pivotControls": false,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1.6
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.36,
+      "deltaSmooth": 0.33,
+      "path": "images/Memb-I-00131_0001.jpg",
+      "colorIn": {
+        "r": 70,
+        "g": 129,
+        "b": 194,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 70,
+        "g": 129,
+        "b": 194,
+        "a": 0.5
+      },
+      "id": 9,
+      "pivotControls": false,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1.8
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.36,
+      "deltaSmooth": 0.33,
+      "path": "images/Memb-I-00131_0002.jpg",
+      "colorIn": {
+        "r": 70,
+        "g": 129,
+        "b": 194,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 194,
+        "g": 70,
+        "b": 157,
+        "a": 0.5
+      },
+      "id": 10,
+      "pivotControls": false,
+      "mix": 0.45,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -2
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    }
+  ],
+  "lightMode": false
+}

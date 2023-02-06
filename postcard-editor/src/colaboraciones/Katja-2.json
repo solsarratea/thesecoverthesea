@@ -1,0 +1,133 @@
+{
+  "layersData": [
+    {
+      "deltaColor": 0.3,
+      "deltaSmooth": 0.2,
+      "path": "images/Memb-I-00131_0008.jpg",
+      "colorIn": {
+        "r": 71,
+        "g": 89,
+        "b": 50,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 102,
+        "g": 105,
+        "b": 203,
+        "a": 0.5
+      },
+      "id": 2,
+      "pivotControls": false,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.4
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.3,
+      "deltaSmooth": 0.2,
+      "path": "images/Memb-I-00131_0008.jpg",
+      "colorIn": {
+        "r": 71,
+        "g": 89,
+        "b": 50,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 170,
+        "g": 171,
+        "b": 213,
+        "a": 0.5
+      },
+      "id": 3,
+      "pivotControls": false,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.6000000000000001
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.3,
+      "deltaSmooth": 0.2,
+      "path": "images/Memb-I-00131_0008.jpg",
+      "colorIn": {
+        "r": 71,
+        "g": 89,
+        "b": 50,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 227,
+        "g": 228,
+        "b": 241,
+        "a": 0.5
+      },
+      "id": 4,
+      "pivotControls": false,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -0.8
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    },
+    {
+      "deltaColor": 0.3,
+      "deltaSmooth": 0.2,
+      "path": "images/Memb-I-00131_0008.jpg",
+      "colorIn": {
+        "r": 71,
+        "g": 89,
+        "b": 50,
+        "a": 0.5
+      },
+      "colorOut": {
+        "r": 69,
+        "g": 70,
+        "b": 119,
+        "a": 0.5
+      },
+      "id": 5,
+      "pivotControls": false,
+      "mix": 0,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "rotation": {
+        "isEuler": true,
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_order": "XYZ"
+      }
+    }
+  ],
+  "lightMode": true
+}
