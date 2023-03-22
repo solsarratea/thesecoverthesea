@@ -115,6 +115,8 @@ export default function Controls({
         Math.abs(lastpos.distanceTo(controls.getPosition())) < 0.001
       ) {
         set('active', false)
+        controls.setOrbitPoint(focus.x, focus.y, focus.z, false)
+
       } else {
         setLast(controls.getPosition())
       }
