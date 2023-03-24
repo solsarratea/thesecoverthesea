@@ -1,56 +1,51 @@
-import { Component } from "react";
-import Modal from "./Modal.js";
+import { useState, useEffect } from 'react'
+import Modal from './Modal.js'
 
-class DisplayInfo extends Component {
-  constructor(props) {
-    super();
+function DisplayInfo(props) {
+  const [show, setShow] = useState(false)
 
-    this.state = {
-      show: props.show,
-   //  disableControl: props.disableControl,
-    };
+  const { init, onShowCallback, onHideCallback } = props
 
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
-  }
+  useEffect(() => {
+    if (show) {
+      onShowCallback()
+    } else {
+      onHideCallback()
+    }
+  }, [show, onShowCallback, onHideCallback])
 
-  showModal = () => {
-    this.setState({ show: true });
-  //  this.state.disableControl({ value: true });
-  };
+  useEffect(() => {
+    if (init) {
+      setShow(true)
+    } else {
+      setShow(false)
+    }
+  }, [init])
 
-  hideModal = () => {
-    this.setState({ show: false });
-  //  this.state.disableControl({ value: false });
-  };
+  const { children, styleClass, hideClose = false, openText, id, src } = props
 
-  render() {
-    const { callback, children, styleClass, openText, id, src } = this.props;
-    return (
-      <div id={id}>
-        <Modal
-          show={this.state.show}
-          handleClose={() => {
-            this.hideModal();
-            if (callback) {
-              callback();
-            }
-          }}
-        >
-          {children}
-        </Modal>
-        <button
-          className={styleClass}
-          type="button"
-          onClick={() => {
-            this.showModal();
-          }}
-        >
-          {openText ? openText : <img alt="display-src" src={src} />}
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div id={id}>
+      <Modal
+        hideClose={hideClose}
+        show={show}
+        handleClose={() => {
+          setShow(false)
+        }}
+      >
+        {children}
+      </Modal>
+      <button
+        className={styleClass}
+        type="button"
+        onClick={() => {
+          setShow(true)
+        }}
+      >
+        {openText ? openText : <img alt="display-src" src={src} />}
+      </button>
+    </div>
+  )
 }
 
-export default DisplayInfo;
+export default DisplayInfo

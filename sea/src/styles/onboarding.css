@@ -38,3 +38,26 @@
   }
   
 }
+
+.loading-bar-container {
+  width: 40%;
+  height: 4px;
+  background: rgb(34, 34, 34,0);
+  z-index: 2;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid  rgb(3, 3, 3);
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  }
+  
+  .loading-bar {
+    display: flex;
+    height: 5px;
+    background: rgba(250, 248, 248,255);
+    border-radius: 1px;
+  }

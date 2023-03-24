@@ -2,6 +2,13 @@ import create from 'zustand';
 
 const useEnvManager = create((set) => ({
     envPath: "textures/skybox/gloriousPink/",
+    visible:true,
+    update: (key, value) =>
+        set((state) => {
+                return {...state,
+                [key]:value,
+                }
+        }),
     setDay: () =>
         set((state) => {
                 return {...state,

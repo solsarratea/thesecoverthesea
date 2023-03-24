@@ -1,8 +1,9 @@
 import DisplayInfo from './DisplayInfo.js'
-import React from 'react'
+import React, {useState} from 'react'
 import '../styles/ui.css'
-import useEnvManager from './useEnvManager.js'
-
+import useEnvManager from '../hooks/useEnvManager.js'
+import useUIManager from '../hooks/useUIManager.js'
+import useAudioManager from '../hooks/useAudioManager.js'
 /* eslint-disable */
 const boat = `
               |    |    |              
@@ -17,30 +18,78 @@ const boat = `
 `
 
 function UI({ show, init, ...props }) {
-  const envManager = useEnvManager((state) => state)
+  const update = useEnvManager((state) => state.update)
+  const updateUI = useUIManager((state) => state.update)
+  const firstGesture = useUIManager((state) => state.firstGesture)
+
+  const didLoad = (state) => {
+    const v = Object.values(state.loadingResources).every(Boolean)
+    return v
+  }
+
+  const resourcesLoaded = useUIManager(didLoad)
+  const refs = useAudioManager((state) => state.audiosRef)
+
+  const transition = useUIManager((state) => state.transition)
+  const [inSea,setIn] = useState(false);
 
   return (
+    <>
+     {resourcesLoaded ? (
     <main>
-      {init ? (
-        <DisplayInfo
+        {inSea ? null : 
+        (<DisplayInfo
           id="helpContainer"
           src="UI/Question.png"
           styleClass="help"
-          show={show}
+          init={!firstGesture}
+          onShowCallback={() => update('visible',false)}
+          onHideCallback={() => null}
         >
           <p></p>
           <div style={{ whiteSpace: 'pre' }}>{boat}</div>
           {/* <button className="enter" onClick={()=>envManager.setDay()}>day</button>
         <button className="enter" onClick={()=>envManager.setNight()}>night</button>
         <br /> */}
-          <button className="enter">NAVIGATE</button>
-        </DisplayInfo>
-      ) : null}
+        {transition ? (
+              <button
+                onClick={() => {
+                  updateUI('firstGesture', true)
+                  setIn(true)
+                  // Media callback
+                  if (refs.audio1) {
+                    console.log(refs)
+                    Object.values(refs).map((ref, i) => {
+                      if (ref.source) {
+                        const audioCtx = ref.source.context
+                        if (audioCtx.state === 'suspended') {
+                          audioCtx.resume().then(function () {
+                            // console.log('playing')
+                            ref.play(0)
+                          })
+                        }
+                      }
+                      ref.play(0)
+                      return null
+                    })
+                  }
+                }}
+                className="enter"
+              >
+                NAVIGATE
+              </button>):null}
+        </DisplayInfo>)}
       <DisplayInfo
         openText="THESE COVERS THE SEA"
         styleClass="about"
         show={false}
         {...props}
+        onShowCallback={() => update('visible',false)}
+        onHideCallback={() => {
+            if (!firstGesture) return
+            update('visible',true)
+          
+        }}
       >
         <h2 className="about-subtitle">Creating New Dimensions</h2>
         <h1 className="about-title">THESE COVER THE SEA</h1>
@@ -90,7 +139,7 @@ function UI({ show, init, ...props }) {
           </a>
         </div>
       </DisplayInfo>
-    </main>
+    </main>) : null}</>
   )
 }
 

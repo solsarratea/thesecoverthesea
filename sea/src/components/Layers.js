@@ -3,6 +3,7 @@ import customMaterial from './layerMaterial'
 import * as THREE from 'three'
 import { Html, useTexture } from '@react-three/drei'
 import useCameraManager from '../hooks/useCameraMnager'
+import useEnvManager from '../hooks/useEnvManager'
 function Layer(props) {
   const {
     colorIn,
@@ -105,6 +106,7 @@ export default function Layers(props) {
     }
   }, [activeName, name])
 
+  const visible = useEnvManager((state) => state.visible);
   return (
     <mesh
       ref={layerRef}
@@ -131,7 +133,7 @@ export default function Layers(props) {
           />
         )
       })}
-      {(hovered || onMe) && props.author !== 'demo' && (
+      {visible && (hovered || onMe) && props.author !== 'demo' && (
         <Html position-y={-18} transform scale={4}>
           <div className="layer-content">Posted by {props.author}</div>
         </Html>

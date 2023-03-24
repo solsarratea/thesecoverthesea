@@ -7,30 +7,13 @@ import { Suspense, useState } from 'react'
 import { Environment } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { hot } from 'react-hot-loader/root'
-import PositionalSound from './Audio.js'
-import useEnvManager from './useEnvManager.js'
+import Audio from './Audio.js'
+import useEnvManager from '../hooks/useEnvManager.js'
 import { Vector3 } from 'three'
 import useCameraManager from '../hooks/useCameraMnager.js'
 const DisableRender = () => useFrame(() => null, 1000)
 
-const audioData = {
-  audio1: {
-    position: [0, 0, 0],
-    path: '/audio/ocean.mp3',
-    refdistance: 50,
-    cone: {
-      outer: 360,
-      inner: 360,
-      gain: 0.1,
-    },
-    rotation: [0, Math.PI / 2, 0],
-    maxdistance: 500,
-    distancemodel: 'exponential',
-    volume: 1,
-  },
-}
-
-function App({ loaded }) {
+function App() {
   const [modalOn] = useState({
     value: false,
   })
@@ -55,7 +38,7 @@ function App({ loaded }) {
         {modalOn.value ? <DisableRender /> : null}
         <Postcards updateControls={updateControls} />
         <Ocean />
-        <PositionalSound id={'audio1'} data={audioData} />
+        <Audio/>
         <Controls zoom={zoom} focus={focus} />
         <Environment
           scale={1}
