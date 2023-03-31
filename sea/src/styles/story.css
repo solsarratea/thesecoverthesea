@@ -66,23 +66,7 @@
     
   }
   
-  @media only screen and (max-width: 600px) {
 
-    #story-container{
-        height: 70%;
-        width: 100%;
-        top: 10%;
-        left: 0%;
-        padding: 1em;
-        font-size: 1.8rem;
-     }
-     #next {
-        top: 85%;
-        left: 35%;
-        width: 50%;
-     }
-    
-  }
 
  #next{
     position: fixed;
@@ -114,4 +98,23 @@
     filter: invert(100%);
     filter: drop-shadow(0 0 0.75rem crimson);
 
+  }
+
+  @media only screen and (max-width: 600px) {
+
+    #story-container{
+        height: 70%;
+        width: 100%;
+        top: 10%;
+        left: 0%;
+        padding: 1em;
+        font-size: 1.8rem;
+     }
+     
+     #next {
+        top: 85%;
+        left: 35%;
+        
+     }
+    
   }
