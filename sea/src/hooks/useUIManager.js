@@ -4,10 +4,11 @@ const useUIManager = create((set) => ({
   firstGesture: false,
   init: true,
   transition: true,
+  invite: false,
   loadingResources: {
     audio: false,
-    scene: false
-    },
+    scene: false,
+  },
   update: (key, value) =>
     set((state) => {
       return {

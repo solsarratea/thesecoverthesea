@@ -1,0 +1,117 @@
+
+
+#story-container{
+    position: fixed;
+    top: 20%;
+    left: 25%;
+    width: 60%;
+    z-index:10;
+    line-height: 2em;
+    height: 50%;
+    overflow-wrap: break-word;
+    padding-right: 1em;
+    text-align: center;
+    overflow: overlay;
+    font-size: 1.5rem;
+    font-weight: 00;
+    animation: lights 10s 750ms linear   infinite;
+    color:black;
+}
+
+@keyframes lights {
+    0% {
+      color: hsl(240, 3%, 7%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.2),
+        0 0 0.125em hsla(320, 100%, 60%, 0.3),
+        -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+        1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+    }
+    
+    30% { 
+      color:hsl(240, 30%, 7%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.5),
+        0 0 0.125em hsla(320, 100%, 60%, 0.5),
+        -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+        0.5em 0.125em 0.25em hsla(199, 45%, 15%, 0.4);
+    }
+    
+    40% { 
+      color: hsl(240, 30%, 7%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.5),
+        0 0 0.125em hsla(320, 100%, 90%, 0.5),
+        -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+        0.25em 0.125em 0.125em hsla(199, 45%, 15%, 0.4);
+    }
+    
+    70% {
+      color: hsl(240, 30%, 7%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.5),
+        0 0 0.125em hsla(320, 100%, 60%, 0.5),
+        0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+        -0.5em 0.125em 0.25em hsla(180, 2%, 10%, 0.4);
+    }
+    
+    100% {
+      color: hsl(240, 3%, 7%);
+      text-shadow:
+        0 0 1em hsla(320, 100%, 50%, 0.2),
+        0 0 0.125em hsla(320, 100%, 60%, 0.3),
+        1em -0.125em 0.5em hsla(40, 100%, 60%, 0.2),
+        -1em 0.125em 0.5em hsla(200, 100%, 60%, 0.2);
+    }
+    
+  }
+  
+  @media only screen and (max-width: 600px) {
+
+    #story-container{
+        height: 70%;
+        width: 100%;
+        top: 10%;
+        left: 0%;
+        padding: 1em;
+        font-size: 1.8rem;
+     }
+     #next {
+        top: 85%;
+        left: 35%;
+        width: 50%;
+     }
+    
+  }
+
+ #next{
+    position: fixed;
+    top: 78%;
+    left: 45%;
+    width: 50%;
+    z-index:10;
+    line-height: 2em;
+    border: 0px solid white;
+    outline: none;
+    border-radius: 4px;
+    background: transparent;
+    padding: 1em;
+    z-index: 1;
+    width: 120px;
+    height: 80px;
+  }
+  
+   #next img {
+    filter: invert(80%);
+    width: 100%;
+  }
+   #next img:hover {
+    filter: invert(100%);
+    filter: drop-shadow(0 0 0.75rem crimson);
+  }
+
+  .glow {
+    filter: invert(100%);
+    filter: drop-shadow(0 0 0.75rem crimson);
+
+  }

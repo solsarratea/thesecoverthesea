@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/index.css'
 import '../styles/onboarding.css'
 import UI from './UI.js'
@@ -6,8 +6,9 @@ import { useSpring, a } from 'react-spring'
 import { DefaultLoadingManager } from 'three'
 import useUIManager from '../hooks/useUIManager'
 import App from './App'
+import Story from './Story.js'
 
-export function OpacityLayer() {
+export function OpacityLayer({ loaded }) {
   const setResource = useUIManager((state) => state.resourceLoaded)
   const update = useUIManager((state) => state.update)
   const [invertedPercent, setPercent] = useState(100)
@@ -22,7 +23,9 @@ export function OpacityLayer() {
     DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
       const v = (itemsLoaded / itemsTotal) * 100
       setText(Math.trunc(v) + ' %')
-      setPercent(100 - v)
+      const vv = 100 - Math.trunc(v)
+      // console.log(vv * 0.5 + 50)
+      setPercent(vv * 0.5 + 50)
     }
     DefaultLoadingManager.onError = function (url) {
       console.log('There was an error loading ' + url)
@@ -43,13 +46,13 @@ export function OpacityLayer() {
   })
   return (
     <>
-      <a.div className="opacity-layer" style={olProps}>
+      <a.div style={olProps}>
         <a.div
           className="loading"
-          style={{ filter: `grayscale(${invertedPercent * 50}%)` }}
+          style={{ filter: `grayscale(${invertedPercent}%)` }}
         />
         <div className="loading-text-container">
-          <p>{loadingText}</p>
+          {!loaded ? <p>{loadingText}</p> : null}
         </div>
       </a.div>
     </>
@@ -59,11 +62,22 @@ export function OpacityLayer() {
 function AppWrapper(props) {
   const transition = useUIManager((state) => state.transition)
 
+  const didLoad = (state) => {
+    const v = Object.values(state.loadingResources).every(Boolean)
+    return v
+  }
+  const resourcesLoaded = useUIManager(didLoad)
+
+  useEffect(() => {
+    //console.log(resourcesLoaded, transition)
+  }, [resourcesLoaded, transition])
+
   return (
     <>
       <UI />
       <App />
-      {transition ? <OpacityLayer /> : null}
+      {transition ? <OpacityLayer loaded={resourcesLoaded} /> : null}
+      {resourcesLoaded && transition ? <Story /> : null}
     </>
   )
 }
