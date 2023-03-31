@@ -24,6 +24,11 @@ function Story() {
       }
     },
   })
+  const didLoad = (state) => {
+    const v = Object.values(state.loadingResources).every(Boolean)
+    return v
+  }
+  const resourcesLoaded = useUIManager(didLoad)
 
   return (
     <a.div style={olProps}>
@@ -35,14 +40,16 @@ function Story() {
         <p>{passage3}</p>
         <p>{passage4}</p>
       </div>
-      <button
-        id="next"
-        onClick={() => {
-          setReady(true)
-        }}
-      >
-        <img alt="back-src" src="UI/Right.png" />
-      </button>
+      {resourcesLoaded ? (
+        <button
+          id="next"
+          onClick={() => {
+            setReady(true)
+          }}
+        >
+          <img alt="back-src" src="UI/Right.png" />
+        </button>
+      ) : null}
     </a.div>
   )
 }

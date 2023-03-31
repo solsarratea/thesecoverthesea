@@ -77,7 +77,7 @@ function AppWrapper(props) {
       <UI />
       <App />
       {transition ? <OpacityLayer loaded={resourcesLoaded} /> : null}
-      {resourcesLoaded && transition ? <Story /> : null}
+      {transition ? <Story /> : null}
     </>
   )
 }
